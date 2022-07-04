@@ -1,13 +1,16 @@
-import {AnyAction, combineReducers} from '@reduxjs/toolkit';
+import {combineReducers} from 'redux';
 import {HYDRATE} from 'next-redux-wrapper';
 
-const rootReducer = (state: any, action: AnyAction) => {
+const rootReducer = combineReducers({
+  // reducers
+});
+
+const reducer = (state: any, action: {type: string; payload: any}) => {
   if (action.type === HYDRATE) {
     return {...state, ...action.payload};
   }
-  return combineReducers({
-    // reducers
-  })(state, action);
+  return rootReducer(state, action);
 };
 
-export default rootReducer;
+export default reducer;
+export type RootState = ReturnType<typeof rootReducer>;
