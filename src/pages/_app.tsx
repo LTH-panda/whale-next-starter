@@ -2,12 +2,12 @@ import 'commons/styles/reset.css';
 import 'commons/styles/globals.css';
 import type {AppProps} from 'next/app';
 import Head from 'next/head';
+import initMockAPI from 'mocks';
 
 function MyApp({Component, pageProps}: AppProps) {
   // msw
   if (process.env.NODE_ENV === 'development') {
-    const {worker} = require('./mocks/browser');
-    worker.start();
+    initMockAPI();
   }
 
   return (
