@@ -4,6 +4,12 @@ import type {AppProps} from 'next/app';
 import Head from 'next/head';
 
 function MyApp({Component, pageProps}: AppProps) {
+  // msw
+  if (process.env.NODE_ENV === 'development') {
+    const {worker} = require('./mocks/browser');
+    worker.start();
+  }
+
   return (
     <>
       <Head>
